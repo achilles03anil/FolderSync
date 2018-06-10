@@ -88,6 +88,9 @@
   <ItemGroup>
     <Content Include="Images\Syc_Folder.ico" />
     <Content Include="Images\Syc_Folder.png" />
+    <Content Include="mailmessagenew.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="mailmessage.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -1,10 +1,10 @@
 <Table>
 <Mail>
 <Mail_id>1</Mail_id>
-  <Mail_From>system@info.com.np</Mail_From>
-  <Mail_Password>Anil77</Mail_Password>
-  <Mail_Server>mail.info.com.np</Mail_Server>
-  <Mail_To>rakesh.tandukar@prime.com.np</Mail_To>
+  <Mail_From>Email_address</Mail_From>
+  <Mail_Password>password</Mail_Password>
+  <Mail_Server>smtp.server</Mail_Server>
+  <Mail_To>email1,email2</Mail_To>
   <Mail_Subject>Backup Mail</Mail_Subject>
   <Mail_Accept_Body>Backup Complete</Mail_Accept_Body>
   <Mail_Reject_Body>Error In Backup. Please contact your administrator</Mail_Reject_Body>
