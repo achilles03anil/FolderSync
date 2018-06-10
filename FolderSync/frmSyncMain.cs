@@ -456,6 +456,7 @@ namespace FolderSync
              {
                  tmrBackup.Enabled = false;
                  StartBackup();
+                 CleanTxtFolder();
              }
              else
              {
