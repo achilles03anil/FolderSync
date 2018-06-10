@@ -1,0 +1,8 @@
+C:\Users\Achilles\documents\visual studio 2013\Projects\FolderSync\FolderSync\bin\Debug\FolderSync.exe
+C:\Users\Achilles\documents\visual studio 2013\Projects\FolderSync\FolderSync\bin\Debug\FolderSync.pdb
+C:\Users\Achilles\documents\visual studio 2013\Projects\FolderSync\FolderSync\obj\Debug\FolderSync.frmSyncMain.resources
+C:\Users\Achilles\documents\visual studio 2013\Projects\FolderSync\FolderSync\obj\Debug\FolderSync.Properties.Resources.resources
+C:\Users\Achilles\documents\visual studio 2013\Projects\FolderSync\FolderSync\obj\Debug\FolderSync.csproj.GenerateResource.Cache
+C:\Users\Achilles\documents\visual studio 2013\Projects\FolderSync\FolderSync\obj\Debug\FolderSync.exe
+C:\Users\Achilles\documents\visual studio 2013\Projects\FolderSync\FolderSync\obj\Debug\FolderSync.pdb
+C:\Users\Achilles\Documents\Visual Studio 2013\Projects\FolderSync\FolderSync\obj\Debug\FolderSync.csprojResolveAssemblyReference.cache

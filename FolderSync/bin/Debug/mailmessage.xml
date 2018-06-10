@@ -1,0 +1,15 @@
+<Table>
+<Mail>
+<Mail_id>1</Mail_id>
+  <Mail_From>system@info.com.np</Mail_From>
+  <Mail_Password>Anil777Anil</Mail_Password>
+  <Mail_Server>mail.info.com.np</Mail_Server>
+  <Mail_To>anil@info.com.np</Mail_To>
+  <Mail_Subject>Backup Mail</Mail_Subject>
+  <Mail_Accept_Body>Backup Complete</Mail_Accept_Body>
+  <Mail_Reject_Body>Error In Backup. Please contact your administrator</Mail_Reject_Body>
+ <Timer_HR>13</Timer_HR>
+  <Timer_MM>30</Timer_MM>
+  <Timer_SS>0</Timer_SS>
+</Mail>
+</Table>
