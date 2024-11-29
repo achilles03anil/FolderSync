@@ -123,7 +123,7 @@ namespace FolderSync
             {
                // SmtpClient smtp = new SmtpClient(iMailClass.MailServer,25);
                 SmtpClient smtp = new SmtpClient(iMailClass.MailServer, 587);
-                smtp.EnableSsl = true;
+                smtp.EnableSsl = false;
                 String Username = iMailClass.MailFrom;
                 String Password = iMailClass.MailPassword;
                System.Net.NetworkCredential cred = new System.Net.NetworkCredential(Username, Password);
@@ -142,7 +142,7 @@ namespace FolderSync
                  newemail.IsBodyHtml = false;
                 //newmail.Attachments.Add(oAttch)
                 //if Attachment is need
-                 ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(ValidateServerCertificate);
+             //    ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(ValidateServerCertificate);
                  smtp.Send(newemail);
 
 

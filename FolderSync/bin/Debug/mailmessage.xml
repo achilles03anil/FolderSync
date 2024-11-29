@@ -1,9 +1,9 @@
 <Table>
 <Mail>
 <Mail_id>1</Mail_id>
-  <Mail_From>system@info.com.np</Mail_From>
-  <Mail_Password>Anil777Anil</Mail_Password>
-  <Mail_Server>mail.info.com.np</Mail_Server>
+  <Mail_From>primesupport@info.com.np</Mail_From>
+  <Mail_Password>Iphone1234!@#$</Mail_Password>
+  <Mail_Server>plum.premium.hostns.io</Mail_Server>
   <Mail_To>anil@info.com.np</Mail_To>
   <Mail_Subject>Backup Mail</Mail_Subject>
   <Mail_Accept_Body>Backup Complete</Mail_Accept_Body>
