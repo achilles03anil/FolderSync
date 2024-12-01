@@ -301,6 +301,11 @@ namespace FolderSync
         public void StartJob(JobModel iJobModelOne)
         {
             BackupStatus = true;
+            try
+            {
+
+           
+            
             string dMailBody = "";
 
             string dSourceFolder = "";
@@ -342,6 +347,13 @@ namespace FolderSync
                 {
                  //   DeleteFolder(iJobModelOne);
                 }
+            }
+            }
+            catch (Exception ex)
+            {
+                BackupStatus = false;
+                ConsoleText( " Start Job Error :" + ex.Message.ToString());
+                // throw;
             }
             BackupStatus = false;
         }

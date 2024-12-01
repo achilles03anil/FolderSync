@@ -14,3 +14,4 @@ F:\Source\Highland\FolderSync\FolderSync\obj\Debug\FolderSync.csproj.GenerateRes
 F:\Source\Highland\FolderSync\FolderSync\obj\Debug\FolderSync.csproj.CoreCompileInputs.cache
 F:\Source\Highland\FolderSync\FolderSync\obj\Debug\FolderSync.exe
 F:\Source\Highland\FolderSync\FolderSync\obj\Debug\FolderSync.pdb
+F:\Source\Highland\FolderSync\FolderSync\obj\Debug\FolderSync.csprojAssemblyReference.cache
