@@ -12,13 +12,18 @@ namespace FolderSync
         public int JobId { get; set; }
         public string JobName { get; set; }
         public string Source_Folder { get; set; }
+        
         public string Destination_Address { get; set; }
         public string  Destination_UserName { get; set; }
         public string Destination_Password { get; set; }
         public string Source_Address { get; set; }
         public string Source_Username { get; set; }
         public string Source_Password { get; set; }
+        public string Source_Port { get; set; }
+
+        public string Source_PassiveMode { get; set; }
         public Boolean Status { get; set; }
+        public Boolean PassiveMode { get; set; }
         public Boolean Deleteold { get; set; }
         [DefaultValue(10)]
         public int DeleteDays { get; set; }
@@ -29,6 +34,7 @@ namespace FolderSync
            // JobName = iJobName;
             Status = false;
             Deleteold = false;
+            PassiveMode = (Source_PassiveMode!=null)?Source_PassiveMode.ToUpper().Equals("TRUE'")?true:false:true;
             DeleteDays = 10;
         }
     }

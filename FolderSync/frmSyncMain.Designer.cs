@@ -37,6 +37,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.readFromListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SCMain = new System.Windows.Forms.SplitContainer();
             this.SCFolder = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -81,7 +82,7 @@
             this.TSSTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.tmrBackup = new System.Windows.Forms.Timer(this.components);
-            this.clearConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listFTPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SCMain)).BeginInit();
             this.SCMain.Panel1.SuspendLayout();
@@ -126,7 +127,8 @@
             this.toolStripMenuItem1,
             this.readFromListToolStripMenuItem,
             this.sendEmailToolStripMenuItem,
-            this.clearConsoleToolStripMenuItem});
+            this.clearConsoleToolStripMenuItem,
+            this.listFTPToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1173, 24);
@@ -160,6 +162,13 @@
             this.sendEmailToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.sendEmailToolStripMenuItem.Text = "Send Email";
             this.sendEmailToolStripMenuItem.Click += new System.EventHandler(this.sendEmailToolStripMenuItem_Click);
+            // 
+            // clearConsoleToolStripMenuItem
+            // 
+            this.clearConsoleToolStripMenuItem.Name = "clearConsoleToolStripMenuItem";
+            this.clearConsoleToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.clearConsoleToolStripMenuItem.Text = "Clear Console";
+            this.clearConsoleToolStripMenuItem.Click += new System.EventHandler(this.clearConsoleToolStripMenuItem_Click);
             // 
             // SCMain
             // 
@@ -247,6 +256,7 @@
             // lstSource
             // 
             this.lstSource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstSource.HideSelection = false;
             this.lstSource.Location = new System.Drawing.Point(3, 31);
             this.lstSource.Name = "lstSource";
             this.lstSource.Size = new System.Drawing.Size(413, 286);
@@ -303,6 +313,7 @@
             // lstDestination
             // 
             this.lstDestination.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstDestination.HideSelection = false;
             this.lstDestination.Location = new System.Drawing.Point(3, 31);
             this.lstDestination.Name = "lstDestination";
             this.lstDestination.Size = new System.Drawing.Size(350, 286);
@@ -559,6 +570,7 @@
             // lstMain
             // 
             this.lstMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstMain.HideSelection = false;
             this.lstMain.Location = new System.Drawing.Point(3, 30);
             this.lstMain.Name = "lstMain";
             this.lstMain.Size = new System.Drawing.Size(384, 315);
@@ -670,7 +682,7 @@
             this.TSSTime.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom;
             this.TSSTime.BorderStyle = System.Windows.Forms.Border3DStyle.Bump;
             this.TSSTime.Name = "TSSTime";
-            this.TSSTime.Size = new System.Drawing.Size(38, 19);
+            this.TSSTime.Size = new System.Drawing.Size(37, 19);
             this.TSSTime.Text = "Time";
             // 
             // bgWorker
@@ -685,12 +697,12 @@
             this.tmrBackup.Enabled = true;
             this.tmrBackup.Tick += new System.EventHandler(this.tmrBackup_Tick);
             // 
-            // clearConsoleToolStripMenuItem
+            // listFTPToolStripMenuItem
             // 
-            this.clearConsoleToolStripMenuItem.Name = "clearConsoleToolStripMenuItem";
-            this.clearConsoleToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
-            this.clearConsoleToolStripMenuItem.Text = "Clear Console";
-            this.clearConsoleToolStripMenuItem.Click += new System.EventHandler(this.clearConsoleToolStripMenuItem_Click);
+            this.listFTPToolStripMenuItem.Name = "listFTPToolStripMenuItem";
+            this.listFTPToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.listFTPToolStripMenuItem.Text = "List FTP ";
+            this.listFTPToolStripMenuItem.Click += new System.EventHandler(this.listFTPToolStripMenuItem_Click);
             // 
             // frmSyncMain
             // 
@@ -810,5 +822,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chkListFiles;
         private System.Windows.Forms.ToolStripMenuItem clearConsoleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listFTPToolStripMenuItem;
     }
 }

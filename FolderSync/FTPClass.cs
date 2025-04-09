@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace FolderSync
@@ -18,11 +19,12 @@ namespace FolderSync
             private FtpWebResponse ftpResponse = null;
             private Stream ftpStream = null;
             private int bufferSize = 2048;
+        private Boolean _userPassiveMode = true;
             //Custom Delegates
             public FolderSync.frmSyncMain.ProgressBarStatus ProgressBarCallback;
 
             /* Construct Object */
-            public FTPClass(string hostIP, string userName, string password) { host = hostIP; user = userName; pass = password; }
+            public FTPClass(string hostIP, string userName, string password, Boolean _userPassiveMode) { host = hostIP; user = userName; pass = password; this._userPassiveMode = _userPassiveMode; }
 
             /* Download File */
             public void download(string remoteFile, string localFile)
@@ -35,7 +37,7 @@ namespace FolderSync
                     ftpRequest.Credentials = new NetworkCredential(user, pass);
                     /* When in doubt, use these options */
                     ftpRequest.UseBinary = true;
-                    ftpRequest.UsePassive = true;
+                ftpRequest.UsePassive = _userPassiveMode;//true;
                     ftpRequest.KeepAlive = true;
                     
                     /* Specify the Type of FTP Request */
@@ -350,13 +352,14 @@ namespace FolderSync
                 try
                 {
                     /* Create an FTP Request */
-                    ftpRequest = (FtpWebRequest)FtpWebRequest.Create(host + "/" + directory);
+                    ftpRequest = (FtpWebRequest)FtpWebRequest.Create(host + "" + directory);
                     /* Log in to the FTP Server with the User Name and Password Provided */
                     ftpRequest.Credentials = new NetworkCredential(user, pass);
                     /* When in doubt, use these options */
                     ftpRequest.UseBinary = true;
-                    ftpRequest.UsePassive = true;
+                    ftpRequest.UsePassive = _userPassiveMode;
                     ftpRequest.KeepAlive = true;
+                ftpRequest.EnableSsl = false;
                     /* Specify the Type of FTP Request */
                     ftpRequest.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
                     /* Establish Return Communication with the FTP Server */

@@ -54,17 +54,20 @@ namespace FolderSync
                   jobName.JobId = Convert.ToInt32(node.SelectSingleNode("Job_id").InnerXml) ;
                   jobName.JobName = node.SelectSingleNode("Job_name").InnerXml;
                   jobName.Source_Address = node.SelectSingleNode("Source_Address").InnerXml;
+                  jobName.Source_Port = node.SelectSingleNode("Source_Port").InnerXml;
                   jobName.Source_Folder = node.SelectSingleNode("Source_Folder").InnerXml;
                   jobName.Source_Username = node.SelectSingleNode("Source_UserName").InnerXml;
                   jobName.Source_Password = node.SelectSingleNode("Source_Password").InnerXml;
-                  jobName.Destination_Address = node.SelectSingleNode("Destination_Address").InnerXml;
+                  jobName.Source_PassiveMode = node.SelectSingleNode("Source_PassiveMode").InnerXml;
+                    jobName.Destination_Address = node.SelectSingleNode("Destination_Address").InnerXml;
 
                   jobName.Deleteold =Convert.ToBoolean( node.SelectSingleNode("Deleteold").InnerXml);
                   jobName.DeleteDays = Convert.ToInt32(node.SelectSingleNode("DeleteDays").InnerXml);
 
                   jobName.Destination_UserName = "";//node.SelectSingleNode("Destination_UserName").InnerXml;
                   jobName.Destination_Password = "";//node.SelectSingleNode("Destination_Password").InnerXml;
-                iJobName.Add(jobName);
+                    jobName.PassiveMode = (jobName.Source_PassiveMode != null) ? jobName.Source_PassiveMode.ToUpper().Equals("FALSE") ?false : true : true;
+                    iJobName.Add(jobName);
                 //MessageBox.Show(proID + " " + proName + " " + price);
                 }
                 catch (Exception ex)
@@ -151,6 +154,38 @@ namespace FolderSync
             {
 
                 Console.WriteLine(ex.ToString());
+            }
+        }
+        public void TestSendCustomMail()
+        {
+            const string smtpServer = "smtps.datamail.in"; // Replace with your SMTP server
+            const int smtpPort = 465; // Port 465 is typically used for SSL
+            const string username = "anil.maharjan@ushec.com.np";
+            const string password = "Anil@123!@#";
+            try
+            {
+                using (var smtp = new SmtpClient(smtpServer, smtpPort))
+                {
+                    smtp.EnableSsl = true; // Enable SSL encryption
+                    smtp.Credentials = new NetworkCredential(username, password);
+
+                    using (var email = new MailMessage())
+                    {
+                        email.From = new MailAddress(username);
+                        email.To.Add("anil.mrjan@gmail.com");
+                        email.Subject = "SSL Test Email";
+                        email.Body = "This is a test email using SSL.";
+                        email.IsBodyHtml = false;
+
+                        smtp.Send(email);
+                    }
+                }
+
+                Console.WriteLine("Email sent successfully using SSL.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending email: {ex.Message}");
             }
         }
 

@@ -4,9 +4,12 @@
     <Job_type>1</Job_type>
     <Job_name>ERPSERVER1</Job_name>
     <Source_Address>IP</Source_Address>
+    <Source_Port>21</Source_Port>
     <Source_Folder>/</Source_Folder>
     <Source_UserName>ftpserver</Source_UserName>
     <Source_Password>pass</Source_Password>
+    <Source_PassiveMode>false</Source_PassiveMode>
+
     <Destination_Address>E:/Backup/ERPSERVER1/</Destination_Address>
     <Destination_Username></Destination_Username>
     <Destination_Password></Destination_Password>
@@ -18,9 +21,12 @@
     <Job_type>1</Job_type>
     <Job_name>ERPSERVER2</Job_name>
     <Source_Address>IP</Source_Address>
+    <Source_Port>21</Source_Port>
     <Source_Folder>/</Source_Folder>
     <Source_UserName>ftpserver</Source_UserName>
     <Source_Password>pass</Source_Password>
+    <Source_PassiveMode>false</Source_PassiveMode>
+
     <Destination_Address>E:/Backup/ERPSERVER2/</Destination_Address>
     <Destination_Username></Destination_Username>
     <Destination_Password></Destination_Password>
@@ -32,9 +38,12 @@
     <Job_type>2</Job_type>
     <Job_name>MISSERVER</Job_name>
     <Source_Address>IP</Source_Address>
+    <Source_Port>21</Source_Port>
     <Source_Folder>MIS</Source_Folder>
     <Source_UserName>ftpserver</Source_UserName>
     <Source_Password>Pass</Source_Password>
+    <Source_PassiveMode>false</Source_PassiveMode>
+
     <Destination_Address>E:/Backup/MIS/</Destination_Address>
     <Destination_Username></Destination_Username>
     <Destination_Password></Destination_Password>

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace FolderSync
@@ -43,10 +44,27 @@ namespace FolderSync
         }
         public void CleanTxtFolder()
         {
-            string dConsole = txtConsole.Text;
-            File.Create(dStartDate + "FileName.txt");
-            File.WriteAllText(dStartDate + "FileName.txt", dConsole);
-            txtConsole.Text = "";
+            try
+            {
+                string dConsole = txtConsole.Text;
+                txtConsole.Text = "";
+                string fileName = Path.Combine(Directory.GetCurrentDirectory(), dStartDate.ToString("yyyyMMdd_HHmmss") + "_FileName.txt");
+                // Ensure the file is created and closed before writing
+                //using (FileStream fs = File.Create(fileName))
+                //{
+                //    fs.Close(); // Close the file immediately
+                //}
+               // File.Create(fileName).Dispose();  // Ensure it's closed immediately
+                File.WriteAllText(fileName, dConsole);
+                //File.Create(dStartDate.ToBinary().ToString() + "FileName.txt");
+                //File.WriteAllText(dStartDate.ToBinary().ToString() + "FileName.txt", dConsole);
+                
+
+            }
+            catch (Exception ex)
+            {
+           }
+           
         }
         public void RefreshTime()
         {
@@ -240,7 +258,7 @@ namespace FolderSync
             if (iJobModelOne != null && iFileList!=null)
             {
                 //Create Connection    
-                FTPClass iFtp = new FTPClass(@"ftp://" + iJobModelOne.Source_Address.ToString() + ":65224" + dSourceFolder, iJobModelOne.Source_Username, iJobModelOne.Source_Password);
+                FTPClass iFtp = new FTPClass(@"ftp://" + iJobModelOne.Source_Address.ToString() + ":"+iJobModelOne.Source_Port.ToString() + "" + dSourceFolder, iJobModelOne.Source_Username, iJobModelOne.Source_Password, iJobModelOne.PassiveMode);
                 //Listed Directory  
                 /* Get Contents of a Directory with Detailed File/Directory Info */
                 iFtp.ProgressBarCallback = new ProgressBarStatus(this.DisplayProgressBarValue);
@@ -308,12 +326,13 @@ namespace FolderSync
             
             string dMailBody = "";
 
-            string dSourceFolder = "";
+            string dSourceFolder = "/";
             if (iJobModelOne.Source_Folder != "/") {dSourceFolder= "/"+iJobModelOne.Source_Folder; }
             if (iJobModelOne != null)
             {
                 //Create Connection    
-                FTPClass iFtp = new FTPClass(@"ftp://" + iJobModelOne.Source_Address.ToString() + ":65224" + dSourceFolder, iJobModelOne.Source_Username, iJobModelOne.Source_Password);
+                FTPClass iFtp = new FTPClass(@"ftp://" + iJobModelOne.Source_Address.ToString() + ":" + iJobModelOne.Source_Port.ToString() + "" + dSourceFolder, iJobModelOne.Source_Username, iJobModelOne.Source_Password, iJobModelOne.PassiveMode);
+                   
                 //Listed Directory  
                 /* Get Contents of a Directory with Detailed File/Directory Info */
                 System.Threading.Thread.Sleep(2000);
@@ -357,6 +376,69 @@ namespace FolderSync
             }
             BackupStatus = false;
         }
+      
+        public void ListingJobDetails (JobModel iJobModelOne)
+        {
+            BackupStatus = true;
+            try
+            {
+
+
+
+                string dMailBody = "";
+
+                string dSourceFolder = "/";
+                if (iJobModelOne.Source_Folder != "/") { dSourceFolder = "/" + iJobModelOne.Source_Folder; }
+                if (iJobModelOne != null)
+                {
+                    //Create Connection    
+                    FTPClass iFtp = new FTPClass(@"ftp://" + iJobModelOne.Source_Address.ToString() + ":"+ iJobModelOne.Source_Port + "" + dSourceFolder, iJobModelOne.Source_Username, iJobModelOne.Source_Password, iJobModelOne.PassiveMode);
+
+                   // Thread.Sleep(2000);
+                    //Listed Directory  
+                    /* Get Contents of a Directory with Detailed File/Directory Info */
+                    System.Threading.Thread.Sleep(2000);
+                    List<FileClass> iFileList = iFtp.directoryListDetailClass("");
+                    ConsoleText(iJobModelOne.JobName + " Files Count " + iFileList.Count);
+                    List<FileClass> iFilterFile = new List<FileClass> { };
+
+                    foreach (var item in iFileList)
+                    {
+                        DateTime dFileDate = Convert.ToDateTime(item.FileDate);
+                        if (dStartDate < dFileDate && dFileDate <= dEndDate)
+                        {
+                            iFilterFile.Add(item);
+                        }
+                    }
+                    ConsoleText(iJobModelOne.JobName + " Filtered Count " + iFilterFile.Count);
+                    LoadListFileClass(lstSource, iFilterFile);
+
+
+                    //Send Email After Backup
+                    ////if (iFilterFile.Count > 0)
+                    ////{
+                    ////    ConsoleText(iJobModelOne.JobName + " Sync Start  " + iFilterFile.Count);
+                    ////    dMailBody = StartSync(iJobModelOne, iFilterFile);
+                    ////    ConsoleText(iJobModelOne.JobName + " Sync Ended  " + iFilterFile.Count);
+                    ////    iClass.SendCustomMail(iMailClass, "Backup of " + iJobModelOne.JobName.ToString(), dMailHeader + dMailBody);
+                    ////    ConsoleText(iJobModelOne.JobName + " Email Sent  ");
+                    ////}
+
+                    if (iJobModelOne.Deleteold == true)
+                    {
+                        //   DeleteFolder(iJobModelOne);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                BackupStatus = false;
+                ConsoleText(" Start Job Error :" + ex.Message.ToString());
+                // throw;
+            }
+            BackupStatus = false;
+        }
+        
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
           
@@ -458,7 +540,8 @@ namespace FolderSync
 
         private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            iClass.SendCustomMail(iMailClass, "Test Message", "Mail Body");
+            // iClass.SendCustomMail(iMailClass, "Test Message", "Mail Body");
+            iClass.TestSendCustomMail();
         }
 
         private void tmrBackup_Tick(object sender, EventArgs e)
@@ -521,5 +604,18 @@ namespace FolderSync
             CleanTxtFolder();
         }
 
+        private void listFTPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lstMain.Items.Count>0)
+            {
+                int iSelectedItem = lstMain.SelectedIndices[0];
+                if (iSelectedItem>-1)
+                {
+                    ListingJobDetails(iJobList[iSelectedItem]);
+                }
+                 
+
+            }
+        }
     }
 }
